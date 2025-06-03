@@ -13,6 +13,7 @@ class board {
   public:
     board(int size);
     void set_cell(int x, int y, bool value);
+    int get_cell(int x, int y);
     int count_alive_neighbours(int x, int y);
     void print_board();
 };
@@ -23,13 +24,17 @@ board::board(int size) : array(size, std::vector<bool>(size, false))
 
 void board::set_cell(int x, int y, bool value)
 {
-  if(x < this->array.size() && y < this->array.size())
+  if(x < this->array.size() && y < this->array[0].size())
     this->array[x][y] = value;
 }
 
+int board::get_cell(int x, int y) {
+  return this->array[x][y];
+}
+
 int board::count_alive_neighbours(int i, int j) {
-  int row_limit = this->array.size();
-  int col_limit = this->array[0].size();
+  int row_limit = this->array.size() - 1;
+  int col_limit = this->array[0].size() - 1;
   int counter = 0;
 
   for(int x = std::max(0, i-1); x <= std::min(i+1, row_limit); ++x)
