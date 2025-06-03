@@ -65,7 +65,7 @@ void board::print_board()
         std::cout << ". ";
       }
     }
-    std::cout << std::endl;
+    std::cout << std::flush << std::endl;
   }
 }
 
