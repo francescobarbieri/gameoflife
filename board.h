@@ -27,20 +27,21 @@ void board::set_cell(int x, int y, bool value)
     this->array[x][y] = value;
 }
 
-int board::count_alive_neighbours(int x, int y) {
-  int size = array.size();
+int board::count_alive_neighbours(int i, int j) {
+  int row_limit = this->array.size();
+  int col_limit = this->array[0].size();
   int counter = 0;
 
-  for(int i = x-1; i < x+1; ++i) {
-    for(int j = y-1; j < y+1; ++j) {
-      std::cout << "Counting ..." << "\n";
-
-      if(this->array[i % size][j % size] == true) {
-        ++counter;
+  for(int x = std::max(0, i-1); x <= std::min(i+1, row_limit); ++x) {
+    for(int y = std::max(0, j-1); y <= std::min(j+1, col_limit); ++y) {
+      if(x != i || y != j) {
+        if(this->array[x][y] == true) {
+          ++counter;
+        }
       }
     }
   }
-  
+
   return counter;
 }
 

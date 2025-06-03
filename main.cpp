@@ -14,7 +14,7 @@ int main () {
 
   first_board.print_board();
 
-  int alive = first_board.count_alive_neighbours(0, 1);
+  int alive = first_board.count_alive_neighbours(1, 0);
 
   std::cout << "\n" << alive << "\n";
 
