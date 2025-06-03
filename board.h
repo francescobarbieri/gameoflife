@@ -32,10 +32,14 @@ int board::count_alive_neighbours(int i, int j) {
   int col_limit = this->array[0].size();
   int counter = 0;
 
-  for(int x = std::max(0, i-1); x <= std::min(i+1, row_limit); ++x) {
-    for(int y = std::max(0, j-1); y <= std::min(j+1, col_limit); ++y) {
-      if(x != i || y != j) {
-        if(this->array[x][y] == true) {
+  for(int x = std::max(0, i-1); x <= std::min(i+1, row_limit); ++x)
+  {
+    for(int y = std::max(0, j-1); y <= std::min(j+1, col_limit); ++y)
+    {
+      if(x != i || y != j) // Excluding the center cell
+      {
+        if(this->array[x][y] == true) 
+        {
           ++counter;
         }
       }
