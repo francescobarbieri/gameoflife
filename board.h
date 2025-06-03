@@ -13,10 +13,11 @@ class board {
   public:
     board(int size);
     void set_cell(int x, int y, bool value);
+    int count_alive_neighbours(int x, int y);
     void print_board();
 };
 
-board::board(int size) : array(50, std::vector<bool>(size, false))
+board::board(int size) : array(size, std::vector<bool>(size, false))
 {
 }
 
@@ -24,6 +25,23 @@ void board::set_cell(int x, int y, bool value)
 {
   if(x < this->array.size() && y < this->array.size())
     this->array[x][y] = value;
+}
+
+int board::count_alive_neighbours(int x, int y) {
+  int size = array.size();
+  int counter = 0;
+
+  for(int i = x-1; i < x+1; ++i) {
+    for(int j = y-1; j < y+1; ++j) {
+      std::cout << "Counting ..." << "\n";
+
+      if(this->array[i % size][j % size] == true) {
+        ++counter;
+      }
+    }
+  }
+  
+  return counter;
 }
 
 void board::print_board()
@@ -39,7 +57,6 @@ void board::print_board()
     }
     std::cout << std::endl;
   }
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 #endif
